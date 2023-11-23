@@ -1,14 +1,31 @@
-class MultiplicationController > application_controller
-  def show_multiplication_form
-    render({ :template => "multiply_template/multiplication_form" })
+class MultiplicationController < ApplicationController
+  # Renders the multiplication form
+  def multiplication_form
+    render({ template: "multiplication_templates/multiplication_form" })
   end
 
-  def multiply_these
-    @first_number = params.fetch("first_number").to_f
-    @second_number = params.fetch("second_num").to_f
+  # Renders the multiplication form (same as multiplication_form)
+  def multiply
+    render({ template: "multiplication_templates/multiplication_form" })
+  end
 
-    @result =  @first_number * @second_number
+  # Handles the multiplication operation and renders the results
+  def wizard_multiply
+    @first_number = params["first_number"].to_f
+    @second_number = params["second_number"].to_f
 
-    render({ :template => "multiply_templates/multiply_results" })
+    @result = @first_number * @second_number
+
+    render({ template: "multiplication_templates/multiplication_results" })
+  end
+
+  # Handles the multiplication operation and renders the results
+  def multiplication_results
+    @first_number = params["first_number"].to_f
+    @second_number = params["second_number"].to_f
+
+    @result = @first_number * @second_number
+
+    render({ template: "multiplication_templates/multiplication_results" })
   end
 end
