@@ -1,15 +1,31 @@
 class AdditionController < ApplicationController
-  def show_addition_form
-    render({ :template => "addition_templates/add_form" })
+  def addition_form
+    render({ :template => "addition_templates/addition_form"})
   end
 
-  def add_these
-    @first_number = params.fetch("first_number").to_f
-    @second_number = params.fetch("second_num").to_f
+  def add
+    render({ :template => "addition_templates/addition_form"})
+
+  end
+
+  def wizard_add
+    @first_number = params["first_number"].to_f
+    @second_number = params["second_number"].to_f
 
     @result = @first_number + @second_number
 
-
-    render({ :template => "addition_template/add_results" })
+    render({ :template => "addition_templates/addition_results"})
   end
+
+  def addition_result
+
+    @first_number = params["first_number"].to_f
+    @second_number = params["second_number"].to_f
+
+    @result = @first_number + @second_number
+
+    render({ :template => "addition_templates/addition_results"})
+  end
+  
+
 end
